@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bangers" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            perspective: 1200px;
+            margin: 0;
+            font-family: 'Bangers', cursive;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            transition: opacity 1s ease;
+        }
+        
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+            z-index: 0;
+        }
+        
+        .instruction {
+            position: absolute;
+            top: 20px;
+            font-size: 24px;
+            color: #333;
+            text-shadow: 1px 1px 1px white;
+            z-index: 1;
+        }
+        
+        .book {
+            transform-style: preserve-3d;
+            position: relative;
+            height: 300px;
+            cursor: pointer;
+            backface-visibility: hidden;
+            transition: transform 1s ease-in-out;
+            z-index: 1;
+        }
+        
+        .front, .back, .page1, .page2, .page3, .page4, .page5, .page6 {
+            transform-style: preserve-3d;
+            position: absolute;
+            width: 200px;
+            height: 100%;
+            top: 0; left: 0;
+            transform-origin: left center;
+            transition: transform 1s ease-in-out, box-shadow 1.5s ease-in-out;
+        }
+        
+        .front {
+            background-image: url('buku1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .back {
+            background: #fa9f2b;
+        }
+        
+        .front, .page1, .page3, .page5 {
+            border-bottom-right-radius: .5em;
+            border-top-right-radius: .5em;
+        }
+        
+        .back, .page2, .page4, .page6 {
+            border-bottom-right-radius: .5em;
+            border-top-right-radius: .5em;
+        }
+        
+        .page1, .page2 {
+            background: #efefef;
+        }
+        
+        .page3, .page4 {
+            background: #f5f5f5;
+        }
+        
+        .page5 {
+            background: #fafafa;
+        }
+        
+        .page6 {
+            background: #fdfdfd;
+        }
+        
+        .book.open .front {
+            transform: rotateY(-160deg) scale(1.1);
+            box-shadow: 0 1em 1em 0 lightgrey;
+        }
+        
+        .book.open .page1 {
+            transform: rotateY(-150deg) scale(1.1);
+            box-shadow: 0 1em 1em 0 grey;
+        }
+        
+        .book.open .page2 {
+            transform: rotateY(-30deg) scale(1.1);
+            box-shadow: 0 1em 1em 0 grey;
+        }
+        
+        .book.open .page3 {
+            transform: rotateY(-140deg) scale(1.1);
+            box-shadow: 0 1em 1em 0 grey;
+        }
+        
+        .book.open .page4 {
+            transform: rotateY(-40deg) scale(1.1);
+            box-shadow: 0 1em 1em 0 grey;
+        }
+        
+        .book.open .page5 {
+            transform: rotateY(-130deg) scale(1.1);
+            box-shadow: 0 1em 1em 0 grey;
+        }
+        
+        .book.open .page6 {
+            transform: rotateY(-50deg) scale(1.1);
+            box-shadow: 0 1em 1em 0 grey;
+        }
+        
+        .book.open .back {
+            transform: rotateY(-20deg) scale(1.1);
+        }
+
+        .text {
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        .mirrored-text {
+            transform: scaleX(-1);
+        }
+
+        h3 { font-size: 14px; }
+        p { font-size: 14px; }
+        blockquote { font-size: 21px; }
+        pre { font-size: 13px; }
+
+        .buttons {
+            margin-top: 50px;
+            display: none;
+        }
+
+        .button {
+            background-color: #ff5c8a;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:hover {
+            background-color: #ff3b6a;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .message {
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <div class="instruction">Tekan buku ini untuk membukanya!</div>
+    <div class="book" id="book">
+        <div class="back"></div>
+        <div class="page6">
+            <div class="text"> Perbuatan aku pas kita KI itu salah, Maaf'in aku yaa kalo kamu ga maafin juga gapapa asal kan aku udah ngungkapin permintaan maaf aku ke kamuuu hehe. dimaafin atau engga nya chat aku dongg aku kangen niccc </div>
+        </div>
+        <div class="page5">
+            <div class="text mirrored-text">Haiiii kamu marah banget yaa? sampai berhari-hari ga ada kabar? maaf ya sayang, aku tau aku salah udah ngabai'in kamu trus ngediemin kamu. Selama kamu ga ngechat aku, aku introspeksi diri trus aku sadar kalo...</div>
+        </div>
+        <div class="page4"></div>
+        <div class="page3"></div>
+        <div class="page2"></div>
+        <div class="page1"></div>
+        <div class="front"></div>
+    </div>
+    
+    <script>
+        const book = document.getElementById('book');
+        const buttons = document.getElementById('buttons');
+        const message = document.getElementById('message');
+        let isOpen = false;
+
+        book.addEventListener('click', () => {
+            isOpen = !isOpen; // Toggle state
+            if (isOpen) {
+                book.classList.add('open'); // Add class to open book
+            } else {
+                book.classList.remove('open'); // Remove class to close book
+            }
+        });
+
+{
+                document.body.style.opacity = '1'; // Kembali ke opacity normal
+        }
+    </script>
+</body>
+</html>

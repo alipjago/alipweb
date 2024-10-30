@@ -1,0 +1,31 @@
+img {
+    cursor: pointer; 
+    width: 300px; 
+    height: auto; 
+    display: block;
+    margin: 0 auto; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+    border-radius: 10px; 
+    
+}
+h1 {
+    font-size: 30px;
+    text-align: center;
+}
+body{
+    background: linear-gradient(rgba(180, 176, 176, 0.7), rgba(169, 168, 168, 0.7)), url(background.jpg);
+    background-size: cover;
+    text-align: center;
+}
+.image-container {
+    background-color: rgb(241, 162, 222); 
+    padding: 10px;
+    border-radius: 15px; 
+    display: inline-block; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin-top: 20px
+}
+.image-container:hover {
+    box-shadow: 0 8px 30px rgba(255, 0, 247, 0.6);
+    transition: box-shadow 0.3s ease;
+}
